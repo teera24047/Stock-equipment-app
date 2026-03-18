@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ระบบบริหารคลังพัสดุ</title>
+  <link rel="icon" type="image/jpeg" href="a.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+<link rel="icon" type="image/jpeg" href="a.jpg">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loader"></div>
+  </div>
+    <div class="login-logo-icon">
+  <i class="fas fa-boxes-stacked"></i>
+    </div>
+  <div id="toast-container"></div>
+
+  <div id="login-page">
+    <div class="login-card">
+      <div class="login-logo">
+        <img src="https://media.jobthai.com/v1/images/logo-pic-map/188217_logo_20200203152810.png" alt="Bosspharmacare" style="max-width: 500px; margin-bottom: 15px;">
+        
+        <h1 id="login-site-name"> Bosspharmacare</h1>
+        <p>กรุณาเข้าสู่ระบบเพื่อดำเนินการต่อ</p>
+      </div>
+      
+      <div class="login-error" id="login-error">
+        <i class="fas fa-exclamation-circle"></i> 
+        <span id="login-error-msg"></span>
+      </div>
+      
+      <div class="login-field">
+        <label>ชื่อผู้ใช้</label>
+        <div class="input-wrap">
+          <i class="fas fa-user"></i>
+          <input type="text" id="login-username" placeholder="กรอกชื่อผู้ใช้" autocomplete="username">
+        </div>
+      </div>
+      
+      <div class="login-field">
+        <label>รหัสผ่าน</label>
+        <div class="input-wrap">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="login-password" placeholder="กรอกรหัสผ่าน" autocomplete="current-password">
+        </div>
+      </div>
+      
+      <button class="btn-login" id="btn-login-submit" onclick="doLogin()">
+        <span class="btn-text">
+          <i class="fas fa-sign-in-alt"></i> เข้าสู่ระบบ
+        </span>
+        <div class="spinner"></div>
+      </button>
+      
+      <p class="login-hint">© 2026 บริษัท บอสฟาร์มาแคร์ จำกัด
+ระบบจัดการ Stock EN</p>
+    </div>
+  </div>
+
+  <div id="app">
+    
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo-icon">
+          <i class="fas fa-boxes-stacked"></i>
+        </div>
+        <div>
+          <div class="sidebar-title" id="sidebar-site-name">คลังพัสดุ</div>
+          <div class="sidebar-subtitle" id="sidebar-version">v1.0.0</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" id="sidebar-nav"></nav>
+
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <div class="user-avatar" id="user-avatar-text">A</div>
+          <div>
+            <div class="user-name" id="sidebar-user-name">-</div>
+            <span class="user-role" id="sidebar-user-role">-</span>
+          </div>
+        </div>
+        <button class="btn-logout" onclick="doLogout()">
+          <i class="fas fa-sign-out-alt"></i> ออกจากระบบ
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <div class="topbar">
+        <div class="topbar-title" id="topbar-title">แดชบอร์ด</div>
+        <div class="topbar-right">
+          <div class="topbar-date" id="topbar-date"></div>
+        </div>
+      </div>
+      <div class="page-content" id="page-content">
+        </div>
+    </div>
+    
+  </div>
+
+  <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+    <div class="modal" id="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3 id="modal-title">
+          <i class="fas fa-edit"></i> <span></span>
+        </h3>
+        <div class="modal-close" onclick="closeModalDirect()">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-footer" id="modal-footer"></div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="confirm-overlay">
+    <div class="confirm-dialog" id="confirm-box">
+      <div class="confirm-icon" id="confirm-icon">⚠️</div>
+      <h3 id="confirm-title">ยืนยันการดำเนินการ</h3>
+      <p id="confirm-msg">คุณแน่ใจหรือไม่?</p>
+      <div class="confirm-actions">
+        <button class="btn btn-ghost" onclick="closeConfirm()">ยกเลิก</button>
+        <button class="btn btn-danger" id="confirm-ok">ยืนยัน</button>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>

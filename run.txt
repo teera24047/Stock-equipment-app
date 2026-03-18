@@ -1,0 +1,9 @@
+ssh user@IPnas -22 p
+cd /volumel/Python/stock-system
+
+run
+nohup python3 app.py > stock_app.log 2>&1 &
+stoppppp
+pkill -f
+check 
+ps -ef | grep python
